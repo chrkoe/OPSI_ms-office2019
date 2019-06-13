@@ -1,0 +1,137 @@
+[Package]
+version: 3
+depends: 
+incremental: False
+
+[Product]
+type: localboot
+id: ms-office2019
+name: Microsoft Office 2019, Visio and Project are optional
+description: 
+advice: 
+version: 1808
+priority: 0
+licenseRequired: False
+productClasses: 
+setupScript: setup32.opsiscript
+uninstallScript: uninstall32.opsiscript
+updateScript: 
+alwaysScript: 
+onceScript: 
+customScript: 
+userLoginScript: 
+
+[ProductProperty]
+type: unicode
+name: install_server
+description: FQDN from Server hosting the installation files
+default: 
+
+[ProductProperty]
+type: unicode
+name: install_share
+description: Network share on the server where the files are hosted
+default:
+
+[ProductProperty]
+type: unicode
+name: install_version
+description: x86 or x64 version
+values: ["x86", "x64"]
+default: ["x64"]  
+
+[ProductProperty]
+type: bool
+name: install_office
+description: Office installieren?/Install Office?
+default: True
+
+[ProductProperty]
+type: bool
+name: install_project
+description: Project installieren?/Install Project?
+default: False
+
+[ProductProperty]
+type: bool
+name: install_visio
+description: Visio installieren?/Install Visio?
+default: False
+
+[ProductProperty]
+type: bool
+name: remove_msi
+description: Alte MSI Versionen von Office, Project und Visio deinstallieren?/Uninstall old MSI versions of Office, Project and Visio?
+default: False
+
+[ProductProperty]
+type: unicode
+name: office86_xml
+description: Filename of office x86 config file
+default:
+
+[ProductProperty]
+type: unicode
+name: office86_removemsi_xml
+description: Filename of office x86 config file with remove parameter
+default:
+
+[ProductProperty]
+type: unicode
+name: office64_xml
+description: Filename of office x64 config file
+default:
+
+[ProductProperty]
+type: unicode
+name: office64_removemsi_xml
+description: Filename of office x64 config file with remove parameter
+default:
+
+[ProductProperty]
+type: unicode
+name: project86_xml
+description: Filename of project x86 config file
+default:
+
+[ProductProperty]
+type: unicode
+name: project86_removemsi_xml
+description: Filename of project x86 config file with remove parameter
+default:
+
+[ProductProperty]
+type: unicode
+name: project64_xml
+description: Filename of project x64 config file
+default:
+
+[ProductProperty]
+type: unicode
+name: project64_removemsi_xml
+description: Filename of project x64 config file with remove parameter
+default:
+
+[ProductProperty]
+type: unicode
+name: visio86_xml
+description: Filename of visio x86 config file
+default:
+
+[ProductProperty]
+type: unicode
+name: visio86_removemsi_xml
+description: Filename of visio x86 config file with remove parameter
+default:
+
+[ProductProperty]
+type: unicode
+name: visio64_xml
+description: Filename of visio x64 config file
+default:
+
+[ProductProperty]
+type: unicode
+name: visio64_removemsi_xml
+description: Filename of visio x64 config file with remove parameter
+default:

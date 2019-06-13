@@ -1,0 +1,105 @@
+[Actions]
+requiredWinstVersion >= "4.12.0.32"
+
+include_insert "vars.opsiinc"
+
+Set $ProductId$ = "Uninstall Microsoft Office 2019"
+
+comment "Show product picture"
+ShowBitmap "%ScriptPath%\office.png" $ProductId$
+
+if (RegKeyExists("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ProPlus2019Volume - en-us"))
+  if (RegVarExists("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ProPlus2019Volume - en-us", "UninstallString"))
+    Set $OfficeEN$ = getRegistryValue("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ProPlus2019Volume - en-us", "UninstallString")
+    Message "Removing Office 2019 en-us"
+    DosInAnIcon_RemoveOfficeEN
+    Message "Office 2019 en-us removed"
+  else
+    comment "No Variable UninstallString for Product Office Pro Plus found"
+    endif
+else
+  comment "Key HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ProPlus2019Volume - en-us not found"
+endif
+
+if (RegKeyExists("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ProPlus2019Volume - de-de"))
+  if (RegVarExists("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ProPlus2019Volume - de-de", "UninstallString"))
+    Set $OfficeDE$ = getRegistryValue("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ProPlus2019Volume - de-de", "UninstallString")
+    Message "Removing Office 2019 de-de"
+    DosInAnIcon_RemoveOfficeDE
+    Message "Office 2019 de-de removed"
+  else
+    comment "No Variable UninstallString for Product Office Pro Plus found"
+    endif
+else
+  comment "Key HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ProPlus2019Volume - de-de not fount"
+endif
+
+if (RegKeyExists("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ProjectPro2019Volume - en-us"))
+  if (RegVarExists("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ProjectPro2019Volume - en-us", "UninstallString"))
+    Set $ProjectEN$ = getRegistryValue("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ProjectPro2019Volume - en-us", "UninstallString")
+    Message "Removing Project 2019 en-us"
+    DosInAnIcon_RemoveProjectEN
+    Message "Project 2019 en-us removed"
+  else
+    comment "No Variable UninstallString for Product Project Pro Plus found"
+    endif         
+else
+  comment "Key HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ProjectPro2019Volume - en-us not found"
+endif
+
+if (RegKeyExists("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ProjectPro2019Volume - de-de"))
+  if (RegVarExists("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ProjectPro2019Volume - de-de", "UninstallString"))
+    Set $ProjectDE$ = getRegistryValue("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ProjectPro2019Volume - de-de", "UninstallString")
+    Message "Removing Project 2019 de-de"
+    DosInAnIcon_RemoveProjectDE
+    Message "Project 2019 de-de removed"
+  else
+    comment "No Variable UninstallString for Product Project Pro Plus found"
+    endif
+else
+  comment "Key HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ProjectPro2019Volume - de-de not found"
+endif
+
+if (RegKeyExists("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\VisioPro2019Volume - en-us"))
+  if (RegVarExists("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\VisioPro2019Volume - en-us", "UninstallString"))
+    Set $VisioEN$ = getRegistryValue("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\VisioPro2019Volume - en-us", "UninstallString")
+    Message "Removing Visio 2019 en-us"
+    DosInAnIcon_RemoveVisioEN
+    Message "Visio 2019 en-us removed"
+  else
+    comment "No Variable UninstallString for Product VIsio Pro Plus found"
+    endif         
+else
+  comment "Key HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\VisioPro2019Volume - en-us not found"
+endif
+
+if (RegKeyExists("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\VisioPro2019Volume - de-de"))
+  if (RegVarExists("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\VisioPro2019Volume - de-de", "UninstallString"))
+    Set $VisioDE$ = getRegistryValue("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\VisioPro2019Volume - de-de", "UninstallString")
+    Message "Removing Visio 2019 de-de"
+    DosInAnIcon_RemoveVisioDE
+    Message "Visio 2019 de-de removed"
+  else
+    comment "No Variable UninstallString for Product Visio Pro Plus found"
+    endif
+else
+  comment "Key HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\VisioPro2019Volume - de-de not found"
+endif
+
+[DosInAnIcon_RemoveOfficeEN]
+$OfficeEN$ DisplayLevel=False
+
+[DosInAnIcon_RemoveOfficeDE]
+$OfficeDE$ DisplayLevel=False
+
+[DosInAnIcon_RemoveProjectEN]
+$ProjectEN$ DisplayLevel=False
+
+[DosInAnIcon_RemoveProjectDE]
+$ProjectDE$ DisplayLevel=False
+
+[DosInAnIcon_RemoveVisioEN]
+$VisioEN$ DisplayLevel=False
+
+[DosInAnIcon_RemoveVisioDE]
+$VisioDE$ DisplayLevel=False

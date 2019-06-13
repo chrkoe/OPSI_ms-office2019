@@ -1,0 +1,119 @@
+[Actions]
+requiredWinstVersion >= "4.12.0.32"
+
+include_insert "vars.opsiinc"
+include_append "actions.opsiscript"
+
+if ($Office$ = "false")
+  if ($Project$ = "false")
+    if ($Visio$ = "false")
+      LogError "No product to install were selected. Please define a product to install and try again!"
+      isFatalError "No product selected!"
+    endif
+  endif
+endif
+if ($InstallServer$ = "FQDN")
+  LogError "Please define a server where the files are hosted!"
+  isFatalError "No Server definded"
+endif
+
+if not(HasMinimumSpace ("%SystemDrive%", $MinimumSpace$))
+  LogError "Not enough space on %SystemDrive%, " + $MinimumSpace$ + " on drive %SystemDrive% needed for " + $ProductId$
+	isFatalError
+	; Stop process and set installation status to failed
+else
+  comment "Show product picture"
+	ShowBitmap "%ScriptPath%\office.png" $ProductId$
+  Set $GuestLogonRegistryValue$ = getRegistryValue($GuestLogonRegistry$, $GuestLogonRegistryKey$, "sysnative")
+  if not ($GuestLogonRegistryValue$ = "1")
+    Registry_EnableGuestLogon  
+  endif  
+  DosInAnIcon_MountShare
+  if not(FileExists($SetupFile$))
+    LogError "Setup file not found"
+    LogError "Please check your local GPO settings. Maybe you need to add some settings manually:"
+    LogError "Computer configuration -> Administrative Templates -> Network -> Lanman Workstation -> Enable insecure guest logons -> Enabled!!"
+    isFatalError "Setup file not found"
+  endif  
+  if ($ProductVersion$ = "x86")
+    ; Office x86
+    if ($Office$ = "true")    
+      Message "Installing Office 2019 x86"
+      if($RemoveMSI$ = "true")
+        Winbatch_Install_Office_86_removemsi
+      else
+        Winbatch_Install_Office_86
+      endif
+      Sub_check_exitcode
+      Message "Office 2019 x86 installed"
+    endif
+    
+    ; Project x86
+    if ($Project$ = "true")
+      ShowBitmap "%ScriptPath%\project.png" $ProductId$
+      Message "Installing Project 2019 x86"
+      if($RemoveMSI$ = "true")  
+        Winbatch_Install_Project_86_removemsi
+      else
+        Winbatch_Install_Project_86
+      endif
+      Sub_check_exitcode
+      Message "Project 2019 x86 installed"
+    endif
+    
+    ; Visio x86
+    if ($Visio$ = "true")
+      ShowBitmap "%ScriptPath%\visio.png" $ProductId$
+      Message "Installing Visio 2019 x86"
+      if($RemoveMSI$ = "true")
+        Winbatch_Install_Visio_86_removemsi
+      else
+        Winbatch_Install_Visio_86
+      endif
+      Sub_check_exitcode
+      Message "Visio 2019 x86 installed"
+    endif  
+  else if ($ProductVersion$ = "x64")
+    ; Office x64
+    if ($Office$ = "true")
+      Message "Installing Office 2019 x64"
+      if ($RemoveMSI$ = "true")
+        Winbatch_Install_Office_64_removemsi
+      else
+        Winbatch_Install_Office_64
+      endif
+      Sub_check_exitcode
+      Message "Office 2019 x64 installed"
+    endif
+    
+    ; Project x64
+    if ($Project$ = "true")
+      ShowBitmap "%ScriptPath%\project.png" $ProductId$
+      Message "Installing Project 2019 x64"
+      if ($RemoveMSI$ = "true")
+        Winbatch_Install_Project_64_removemsi
+      else
+        Winbatch_Install_Project_64
+      endif
+      Sub_check_exitcode
+      Message "Project 2019 x64 installed"
+    endif
+    
+    ; Visio x64
+    if ($Visio$ = "true")
+      ShowBitmap "%ScriptPath%\visio.png" $ProductId$
+      Message "Installing Visio 2019 x64"
+      if ($RemoveMSI$ = "true")
+        Winbatch_Install_Visio_64_removemsi
+      else
+        Winbatch_Install_Visio_64
+      endif
+      Sub_check_exitcode
+      Message "Visio 2019 x64 installed"
+    endif  
+  endif
+  DosInAnIcon_UnmountShare
+  if ($GuestLogonRegistryValue$ = "0")
+    Registry_ResetGuestLogon
+  endif
+endif

@@ -1,0 +1,61 @@
+DefVar $Office$
+DefVar $Project$
+DefVar $Visio$
+DefVar $RemoveMSI$
+DefVar $MinimumSpace$
+DefVar $InstallServer$
+DefVar $InstallShare$
+DefVar $MountPoint$
+DefVar $ProductId$
+DefVar $ProductVersion$
+DefVar $ExitCode$
+DefVar $SetupFile$
+DefVar $GuestLogonRegistryValue$
+DefVar $GuestLogonRegistry$
+DefVar $GuestLogonRegistryKey$
+DefVar $O64xml$
+DefVar $O64Removexml$
+DefVar $O86xml$
+DefVar $O86Removexml$
+DefVar $P64xml$
+DefVar $P64Removexml$
+DefVar $P86xml$
+DefVar $P86Removexml$
+DefVar $V64xml$
+DefVar $V64Removexml$
+DefVar $V86xml$
+DefVar $V86Removexml$
+
+DefVar $OfficeEN$
+DefVar $OfficeDE$
+DefVar $VisioEN$
+DefVar $VisioDE$
+DefVar $ProjectEN$
+DefVar $ProjectDE$
+
+Set $ProductId$ = "Microsoft Office 2019"
+Set $MountPoint$ = "Z:"
+Set $InstallServer$ = GetProductProperty("install_server", "FQDN")
+Set $InstallShare$ = GetProductProperty("install_share", "ODT")
+Set $Office$ = GetProductProperty("install_office", "true")
+Set $Project$ = GetProductProperty("install_project", "false")
+Set $Visio$ = GetProductProperty("install_visio", "false")
+Set $ProductVersion$ = GetProductProperty("install_version", "x86")
+Set $RemoveMSI$ = GetProductProperty("remove_msi", "false")
+Set $MinimumSpace$ = "5 GB"
+Set $SetupFile$ = $MountPoint$ + "\setup.exe"
+Set $GuestLogonRegistry$ = "HKLM\Software\Policies\Microsoft\Windows\LanmanWorkstation"
+Set $GuestLogonRegistryKey$ = "AllowInsecureGuestAuth"
+
+Set $O86xml$ = GetProductProperty("office86_xml", "office86.xml")
+Set $O86Removexml$ = GetProductProperty("office86_removemsi_xml", "office86remove.xml")
+Set $O64xml$ = GetProductProperty("office64_xml", "office64.xml")
+Set $O64Removexml$ = GetProductProperty("office64_removemsi_xml", "office64remove.xml")
+Set $P86xml$ = GetProductProperty("project86_xml", "project86.xml")
+Set $P86Removexml$ = GetProductProperty("project86_removemsi_xml", "project86remove.xml")
+Set $P64xml$ = GetProductProperty("project64_xml", "project64.xml")
+Set $P64Removexml$ = GetProductProperty("project64_removemsi_xml", "project64remove.xml")
+Set $V86xml$ = GetProductProperty("visio86_xml", "visio86.xml")
+Set $V86Removexml$ = GetProductProperty("visio86_removemsi_xml", "visio86remove.xml")
+Set $V64xml$ = GetProductProperty("visio64_xml", "visio64.xml")
+Set $V64Removexml$ = GetProductProperty("visio64_removemsi_xml", "visio64remove.xml")
