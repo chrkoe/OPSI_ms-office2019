@@ -28,7 +28,7 @@ $SetupFile$ /configure $MountPoint$\$P64xml$
 $SetupFile$ /configure $MountPoint$\$V86xml$
 
 [Winbatch_Install_Visio_64]
-$SetupFile$ /configure $MountPoint$\V64xml$
+$SetupFile$ /configure $MountPoint$\$V64xml$
 
 [Winbatch_Install_Office_86_removemsi]
 $SetupFile$ /configure $MountPoint$\$O86Removexml$
